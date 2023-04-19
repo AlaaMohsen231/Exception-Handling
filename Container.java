@@ -121,9 +121,7 @@ public class Container implements Comparable<Container> {
         }
         } catch (NotVaildAutosarFileException e) {
             e = new NotVaildAutosarFileException("NotVaildAutosarFileException");
-        } //        catch (EmptyAutosarFileException e) {
-        //                    e = new EmptyAutosarFileException("n/a");
-        //                } 
+        } 
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
