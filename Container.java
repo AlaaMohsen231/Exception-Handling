@@ -45,6 +45,7 @@ public class Container implements Comparable<Container> {
 
     @Override
     public int compareTo(Container o) {
+        //compare the letter after "container" word 
         if (this.getShortName().charAt(9) == o.getShortName().charAt(9)) {
             return 0;
         } else if (this.getShortName().charAt(9) < o.getShortName().charAt(9)) {
@@ -66,15 +67,17 @@ public class Container implements Comparable<Container> {
 
     public static void main(String[] args) {
         try {
+            // for loop to test all cases of files 
             for(int j =0 ; j<4;j++){
             String fileName = args[0];
-
+            // exception for file extension
             if (!fileName.endsWith(".arxml")) {
                 throw new NotVaildAutosarFileException("invalid file extension");
                 
             }
-
+           
             File file = new File(fileName);
+            // exception for non exist file
             if (!(file.exists())) {
                 throw new FileNotExist("FileNotExist");
                 
@@ -82,6 +85,7 @@ public class Container implements Comparable<Container> {
             FileInputStream inputStream = new FileInputStream(file);
             int d;
             StringBuilder strBldr = new StringBuilder();
+             //exception for empty file
             if ((d = inputStream.read()) == -1) {
                 throw new EmptyAutosarFileException("EmptyAutosarFileException");
                 
@@ -108,7 +112,9 @@ public class Container implements Comparable<Container> {
                     arrLCont.add(cntnr);
                 }
             }
+                //sort the data
             Collections.sort(arrLCont);
+                //create anew modified file
             String outName = fileName.substring(0, fileName.indexOf('.')) + "_mod.arxml";
             FileOutputStream outStream = new FileOutputStream(outName);
             outStream.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n".getBytes());
